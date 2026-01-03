@@ -1,4 +1,4 @@
-import { TrendingUp, Coins, Clock, Shield, AlertCircle, CheckCircle, ArrowRightLeft, Zap, Receipt } from "lucide-react";
+import { TrendingUp, Coins, Clock, Shield, AlertCircle, CheckCircle, ArrowRightLeft, Zap } from "lucide-react";
 import { motion } from "motion/react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -84,8 +84,8 @@ export function Dashboard() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-semibold text-white drop-shadow-lg">Dashboard</h1>
-        <p className="text-cyan-300/70 mt-1">
+        <h1 className="text-3xl font-semibold text-gray-900">Dashboard</h1>
+        <p className="text-gray-600 mt-1">
           Token-based expense management with guaranteed settlements
         </p>
       </div>
@@ -98,51 +98,40 @@ export function Dashboard() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className="relative overflow-hidden"
           >
             <div
-              className="relative rounded-xl p-6 border backdrop-blur-sm transition-all"
-              style={{ 
-                background: "rgba(26, 31, 58, 0.4)",
-                borderColor: "rgba(0, 212, 255, 0.2)",
-                boxShadow: "var(--shadow-md)"
-              }}
+              className="relative bg-white rounded-xl p-6 border border-gray-200 hover:border-gray-300 transition-all"
+              style={{ boxShadow: "var(--shadow-md)" }}
             >
-              {/* Icon Background with glow */}
-              <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-full opacity-20" style={{
-                background: `linear-gradient(135deg, ${kpi.color.includes('blue') ? '#00d4ff' : kpi.color.includes('84cc16') ? '#84cc16' : kpi.color.includes('amber') ? '#f59e0b' : '#7c3aed'} 0%, transparent 100%)`
-              }} />
+              {/* Icon Background */}
+              <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${kpi.bgColor} rounded-bl-full opacity-50`} />
               
               <div className="relative">
                 <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${kpi.color} flex items-center justify-center`} style={{
-                    boxShadow: kpi.color.includes('84cc16') ? '0 0 15px rgba(132, 204, 22, 0.3)' : '0 0 15px rgba(0, 212, 255, 0.3)'
-                  }}>
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${kpi.color} flex items-center justify-center`}>
                     <kpi.icon className="w-6 h-6 text-white" />
                   </div>
                   {kpi.trend === "up" && (
-                    <span className="text-sm font-medium text-lime-400">{kpi.change}</span>
+                    <span className="text-sm font-medium text-green-600">{kpi.change}</span>
                   )}
                   {kpi.trend === "protected" && (
-                    <span className="text-xs font-medium text-lime-400 px-2 py-1 rounded backdrop-blur-sm" style={{
-                      background: "rgba(132, 204, 22, 0.15)",
-                      border: "1px solid rgba(132, 204, 22, 0.3)"
-                    }}>
+                    <span className="text-xs font-medium text-[#4d7c0f] bg-[#f7fee7] px-2 py-1 rounded">
                       {kpi.change}
                     </span>
                   )}
                   {kpi.trend === "neutral" && (
-                    <span className="text-sm font-medium text-amber-400">{kpi.change}</span>
+                    <span className="text-sm font-medium text-amber-600">{kpi.change}</span>
                   )}
                 </div>
-                <div className="text-2xl font-semibold text-white mb-1 drop-shadow-lg">{kpi.value}</div>
-                <div className="text-sm text-cyan-300/70">{kpi.title}</div>
+                <div className="text-2xl font-semibold text-gray-900 mb-1">{kpi.value}</div>
+                <div className="text-sm text-gray-600">{kpi.title}</div>
               </div>
 
-              {/* Animated shimmer effect with neon */}
+              {/* Animated shimmer effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-300/10 to-transparent"
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                 initial={{ x: "-100%" }}
                 animate={{ x: "200%" }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
@@ -160,26 +149,22 @@ export function Dashboard() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{ 
-              background: "rgba(26, 31, 58, 0.4)",
-              borderColor: "rgba(0, 212, 255, 0.2)",
-              boxShadow: "var(--shadow-lg)"
-            }}
+            className="bg-white rounded-xl p-6 border border-gray-200"
+            style={{ boxShadow: "var(--shadow-lg)" }}
           >
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg font-semibold text-white">Obligation Flow</h3>
-                <p className="text-sm text-cyan-300/70 mt-1">Expense → Token → Settlement lifecycle</p>
+                <h3 className="text-lg font-semibold text-gray-900">Obligation Flow</h3>
+                <p className="text-sm text-gray-600 mt-1">Expense → Token → Settlement lifecycle</p>
               </div>
               <div className="flex items-center gap-4 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#84cc16]" style={{ boxShadow: "0 0 8px rgba(132, 204, 22, 0.5)" }}></div>
-                  <span className="text-cyan-300/70">Expenses</span>
+                  <div className="w-3 h-3 rounded-full bg-[#84cc16]"></div>
+                  <span className="text-gray-600">Expenses</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#7c3aed]" style={{ boxShadow: "0 0 8px rgba(124, 58, 237, 0.5)" }}></div>
-                  <span className="text-cyan-300/70">Settled</span>
+                  <div className="w-3 h-3 rounded-full bg-[#3f6212]"></div>
+                  <span className="text-gray-600">Settled</span>
                 </div>
               </div>
             </div>
@@ -188,39 +173,37 @@ export function Dashboard() {
               <AreaChart data={flowData}>
                 <defs>
                   <linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#84cc16" stopOpacity={0.4} />
+                    <stop offset="5%" stopColor="#84cc16" stopOpacity={0.3} />
                     <stop offset="95%" stopColor="#84cc16" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="colorSettled" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#7c3aed" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#7c3aed" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#3f6212" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#3f6212" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 212, 255, 0.1)" />
-                <XAxis dataKey="name" stroke="#8b92a8" fontSize={12} />
-                <YAxis stroke="#8b92a8" fontSize={12} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis dataKey="name" stroke="#888888" fontSize={12} />
+                <YAxis stroke="#888888" fontSize={12} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "rgba(26, 31, 58, 0.95)",
-                    border: "1px solid rgba(0, 212, 255, 0.3)",
-                    borderRadius: "12px",
-                    color: "#e8eaf0",
-                    backdropFilter: "blur(10px)"
+                    backgroundColor: "white",
+                    border: "1px solid #e5e7eb",
+                    borderRadius: "8px",
                   }}
                 />
                 <Area
                   type="monotone"
                   dataKey="expenses"
                   stroke="#84cc16"
-                  strokeWidth={3}
+                  strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#colorExpenses)"
                 />
                 <Area
                   type="monotone"
                   dataKey="settled"
-                  stroke="#7c3aed"
-                  strokeWidth={3}
+                  stroke="#3f6212"
+                  strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#colorSettled)"
                 />
@@ -230,18 +213,16 @@ export function Dashboard() {
             {/* Flow Steps */}
             <div className="mt-6 grid grid-cols-3 gap-4">
               {[
-                { label: "Expense Submitted", icon: Receipt, color: "from-cyan-400 to-cyan-600" },
-                { label: "Token Issued", icon: Coins, color: "from-lime-400 to-lime-600" },
-                { label: "Settlement Guaranteed", icon: CheckCircle, color: "from-purple-500 to-purple-700" },
+                { label: "Expense Submitted", icon: Receipt, color: "bg-blue-100 text-blue-600" },
+                { label: "Token Issued", icon: Coins, color: "bg-[#f7fee7] text-[#4d7c0f]" },
+                { label: "Settlement Guaranteed", icon: CheckCircle, color: "bg-green-100 text-green-600" },
               ].map((step, i) => (
                 <div key={step.label} className="flex items-center gap-2">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${step.color} flex items-center justify-center flex-shrink-0`} style={{
-                    boxShadow: "0 0 10px rgba(0, 212, 255, 0.3)"
-                  }}>
-                    <step.icon className="w-4 h-4 text-white" />
+                  <div className={`w-8 h-8 rounded-lg ${step.color} flex items-center justify-center flex-shrink-0`}>
+                    <step.icon className="w-4 h-4" />
                   </div>
-                  <span className="text-sm text-white">{step.label}</span>
-                  {i < 2 && <ArrowRightLeft className="w-4 h-4 text-cyan-300/50 ml-auto" />}
+                  <span className="text-sm text-gray-700">{step.label}</span>
+                  {i < 2 && <ArrowRightLeft className="w-4 h-4 text-gray-300 ml-auto" />}
                 </div>
               ))}
             </div>
@@ -254,20 +235,14 @@ export function Dashboard() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="rounded-xl p-6 border backdrop-blur-sm h-full"
-            style={{ 
-              background: "rgba(26, 31, 58, 0.4)",
-              borderColor: "rgba(124, 58, 237, 0.3)",
-              boxShadow: "var(--shadow-neon-purple)"
-            }}
+            className="bg-white rounded-xl p-6 border border-gray-200 h-full"
+            style={{ boxShadow: "var(--shadow-lg)" }}
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center" style={{
-                boxShadow: "0 0 15px rgba(124, 58, 237, 0.5)"
-              }}>
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-white">AI CFO Alerts</h3>
+              <h3 className="text-lg font-semibold text-gray-900">AI CFO Alerts</h3>
             </div>
 
             <div className="space-y-3">
@@ -277,26 +252,22 @@ export function Dashboard() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
-                  className="p-3 rounded-lg border backdrop-blur-sm transition-all hover:scale-102"
-                  style={{
-                    background: "rgba(26, 31, 58, 0.5)",
-                    borderColor: "rgba(0, 212, 255, 0.2)"
-                  }}
+                  className="p-3 rounded-lg border border-gray-200 hover:border-gray-300 transition-all"
                 >
                   <div className="flex items-start gap-2">
                     {alert.type === "info" && (
-                      <AlertCircle className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <AlertCircle className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
                     )}
                     {alert.type === "success" && (
-                      <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                     )}
                     {alert.type === "warning" && (
-                      <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                      <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-white">{alert.title}</p>
-                      <p className="text-xs text-cyan-300/70 mt-1">{alert.message}</p>
-                      <p className="text-xs text-cyan-300/50 mt-1">{alert.time}</p>
+                      <p className="text-sm font-medium text-gray-900">{alert.title}</p>
+                      <p className="text-xs text-gray-600 mt-1">{alert.message}</p>
+                      <p className="text-xs text-gray-400 mt-1">{alert.time}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -311,36 +282,22 @@ export function Dashboard() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="rounded-xl p-6 border backdrop-blur-sm"
-        style={{ 
-          background: "rgba(26, 31, 58, 0.4)",
-          borderColor: "rgba(0, 212, 255, 0.2)",
-          boxShadow: "var(--shadow-lg)"
-        }}
+        className="bg-white rounded-xl p-6 border border-gray-200"
+        style={{ boxShadow: "var(--shadow-lg)" }}
       >
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-lg font-semibold text-white">Upcoming Settlement Dates</h3>
-            <p className="text-sm text-cyan-300/70 mt-1">Guaranteed weekly settlements via UPI Circle</p>
+            <h3 className="text-lg font-semibold text-gray-900">Upcoming Settlement Dates</h3>
+            <p className="text-sm text-gray-600 mt-1">Guaranteed weekly settlements via UPI Circle</p>
           </div>
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            className="px-4 py-2 rounded-lg text-white font-semibold transition-all"
-            style={{
-              background: "linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%)",
-              boxShadow: "0 0 15px rgba(0, 212, 255, 0.3)"
-            }}
-          >
+          <button className="px-4 py-2 bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-white rounded-lg hover:from-[#65a30d] hover:to-[#4d7c0f] transition-all">
             View All
-          </motion.button>
+          </button>
         </div>
 
         <div className="relative">
-          {/* Timeline line with neon glow */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5" style={{
-            background: "linear-gradient(180deg, #00d4ff 0%, #7c3aed 50%, rgba(0, 212, 255, 0.2) 100%)",
-            boxShadow: "0 0 10px rgba(0, 212, 255, 0.5)"
-          }}></div>
+          {/* Timeline line */}
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#84cc16] via-[#a3e635] to-gray-200"></div>
 
           <div className="space-y-6">
             {upcomingSettlements.map((settlement, index) => (
@@ -351,45 +308,34 @@ export function Dashboard() {
                 transition={{ delay: 0.8 + index * 0.1 }}
                 className="relative flex items-center gap-6 pl-14"
               >
-                {/* Timeline dot with glow */}
+                {/* Timeline dot */}
                 <div
-                  className={`absolute left-4 w-5 h-5 rounded-full border-2 flex items-center justify-center
-                    ${settlement.status === "pending" ? "bg-cyan-400 border-cyan-300" : "bg-purple-500/50 border-purple-400/50"}
+                  className={`absolute left-4 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center
+                    ${settlement.status === "pending" ? "bg-[#84cc16]" : "bg-gray-300"}
                   `}
-                  style={{ 
-                    boxShadow: settlement.status === "pending" 
-                      ? "0 0 15px rgba(0, 212, 255, 0.8)" 
-                      : "0 0 10px rgba(124, 58, 237, 0.5)"
-                  }}
+                  style={{ boxShadow: settlement.status === "pending" ? "var(--shadow-lime)" : "none" }}
                 >
                   {settlement.status === "pending" && (
                     <motion.div
                       className="w-2 h-2 rounded-full bg-white"
-                      animate={{ scale: [1, 1.3, 1] }}
+                      animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />
                   )}
                 </div>
 
-                <div className="flex-1 flex items-center justify-between p-4 rounded-lg border backdrop-blur-sm transition-all hover:scale-102" style={{
-                  background: settlement.status === "pending" 
-                    ? "rgba(0, 212, 255, 0.1)" 
-                    : "rgba(26, 31, 58, 0.5)",
-                  borderColor: settlement.status === "pending"
-                    ? "rgba(0, 212, 255, 0.3)"
-                    : "rgba(124, 58, 237, 0.2)"
-                }}>
+                <div className="flex-1 flex items-center justify-between p-4 rounded-lg border border-gray-200 bg-gradient-to-r from-white to-gray-50 hover:border-gray-300 transition-all">
                   <div>
-                    <div className="font-medium text-white">{settlement.date}</div>
-                    <div className="text-sm text-cyan-300/70">{settlement.day}</div>
+                    <div className="font-medium text-gray-900">{settlement.date}</div>
+                    <div className="text-sm text-gray-600">{settlement.day}</div>
                   </div>
                   <div className="text-right">
-                    <div className="font-semibold text-white">{settlement.amount}</div>
+                    <div className="font-semibold text-gray-900">{settlement.amount}</div>
                     <div
                       className={`text-xs font-medium mt-1 ${
                         settlement.status === "pending"
-                          ? "text-cyan-400"
-                          : "text-purple-400"
+                          ? "text-[#4d7c0f]"
+                          : "text-gray-500"
                       }`}
                     >
                       {settlement.status === "pending" ? "Processing" : "Scheduled"}

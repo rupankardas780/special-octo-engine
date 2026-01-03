@@ -20,21 +20,14 @@ const navigation = [
 
 export function Sidebar({ currentPage, onPageChange }: SidebarProps) {
   return (
-    <aside className="w-64 flex flex-col backdrop-blur-md" style={{
-      background: "rgba(15, 18, 35, 0.8)",
-      borderRight: "1px solid rgba(0, 212, 255, 0.15)"
-    }}>
+    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
       {/* Logo */}
-      <div className="h-16 flex items-center px-6" style={{
-        borderBottom: "1px solid rgba(0, 212, 255, 0.15)"
-      }}>
+      <div className="h-16 flex items-center px-6 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center" style={{
-            boxShadow: "0 0 15px rgba(0, 212, 255, 0.5)"
-          }}>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#84cc16] to-[#65a30d] flex items-center justify-center">
             <span className="text-white font-bold">C</span>
           </div>
-          <span className="text-xl font-semibold text-white">CORPAY</span>
+          <span className="text-xl font-semibold">CORPAY</span>
         </div>
       </div>
 
@@ -52,48 +45,36 @@ export function Sidebar({ currentPage, onPageChange }: SidebarProps) {
                 relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg
                 transition-all duration-200
                 ${isActive 
-                  ? 'text-cyan-300' 
-                  : 'text-cyan-300/60 hover:text-cyan-300'
+                  ? 'text-[#4d7c0f]' 
+                  : 'text-gray-700 hover:bg-gray-100'
                 }
               `}
             >
               {isActive && (
                 <motion.div
                   layoutId="sidebar-active"
-                  className="absolute inset-0 rounded-lg"
+                  className="absolute inset-0 bg-[#f7fee7] rounded-lg"
                   initial={false}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  style={{
-                    background: "rgba(0, 212, 255, 0.15)",
-                    border: "1px solid rgba(0, 212, 255, 0.3)",
-                    boxShadow: "0 0 15px rgba(0, 212, 255, 0.2)"
-                  }}
                 />
               )}
               <Icon className="w-5 h-5 relative z-10" />
-              <span className="relative z-10 font-medium">{item.label}</span>
+              <span className="relative z-10">{item.label}</span>
             </button>
           );
         })}
       </nav>
 
       {/* Footer */}
-      <div className="p-4" style={{
-        borderTop: "1px solid rgba(0, 212, 255, 0.15)"
-      }}>
-        <div className="rounded-lg p-4 backdrop-blur-sm" style={{
-          background: "rgba(0, 212, 255, 0.1)",
-          border: "1px solid rgba(0, 212, 255, 0.3)"
-        }}>
+      <div className="p-4 border-t border-gray-200">
+        <div className="bg-gradient-to-br from-[#f7fee7] to-[#ecfccb] rounded-lg p-4">
           <div className="flex items-start gap-2 mb-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-lime-400 to-lime-600 flex items-center justify-center flex-shrink-0 mt-0.5" style={{
-              boxShadow: "0 0 10px rgba(132, 204, 22, 0.5)"
-            }}>
-              <span className="text-white text-xs font-bold">✓</span>
+            <div className="w-6 h-6 rounded-full bg-[#84cc16] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-white text-xs">✓</span>
             </div>
             <div>
-              <p className="text-sm font-medium text-white">Settlement Assured</p>
-              <p className="text-xs text-cyan-300/70 mt-1">
+              <p className="text-sm font-medium text-gray-900">Settlement Assured</p>
+              <p className="text-xs text-gray-600 mt-1">
                 Every token is company-backed and guaranteed
               </p>
             </div>

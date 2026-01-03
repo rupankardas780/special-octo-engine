@@ -39,7 +39,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%)' }}>
+    <div className="flex h-screen bg-gray-50 overflow-hidden">
       <Sidebar currentPage={currentPage} onPageChange={setCurrentPage} />
       
       <div className="flex-1 flex flex-col overflow-hidden">
